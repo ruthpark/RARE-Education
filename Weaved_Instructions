@@ -1,0 +1,55 @@
+To connect to our devices in Africa, we use Weaved. 
+
+Weaved is a service that we can install on devices to connect them to Weaved servers whenever they are on the internet.
+Once weaved is installed, we can then log into our weaved account, and get a host name and port through which to SSH into the device.
+The beauty of this service is that it doesn't have any special IP requirements. As long as you and the device are both on the internet, both sides can connect to Weaved's servers and communicate through them.  It's also built for raspberry pis so it's super easy to install.
+
+This is in stark contrast to other solutions we considered:
+-SSH requires the devices to have a public IP address, which is annoying to set up.
+-OpenVPN is very similar to Weaved in function, but we'd have to set up our own VPN server, and installing openVPN clients and servers on raspberry pis is no fun. Weaved allows us to use their servers and makes installation easy.
+
+########### Our Weaved Account ########################### 
+
+To log into our weaved account, go to https://developer.weaved.com/portal/login.php (the front page is weaved.com), and use 
+email: ggoldsh@mit.edu 
+password: 1RoomSchool
+
+With our current free account, we can install weaved on up to 10 devices.
+We can then connect to one at a time via SSH for at most 30 minutes at one time.
+If we need more devices or time, we can upgrade to a better account.
+
+########### Installing Weaved on a Device ################
+
+To install weaved, follow the instructions at:
+https://www.weaved.com/installing-weaved-raspberry-pi-raspbian-os/
+
+If they haven't changed since this doc was made (December 2015), the following instructions will be valid:
+
+First, connect your Raspberry Pi to the internet.  
+
+Then, type the following three commands into its terminal:
+
+sudo apt-get update
+sudo apt-get install weavedconnectd
+sudo weavedinstaller
+
+The weaved installer will then prompt you for several responses.
+
+First, enter 1 to select Attach/reinstall Weaved to a service
+
+Then, enter 1 to install SSH. You will then be prompted to continue with default port 22, or select another port.
+
+Enter a name for this service. Ensure it distinguishes the device you're configuring from the others listed on our account under "My Services." 
+
+That's it!
+
+########### Connecting to a device through Weaved ########
+
+Now, whenever your device is on the internet, you can connect to it through Weaved.
+Simply open our account and navigate to the My Services tab. A list of services and statuses will appear.
+If a device is online, its name will be a clickable link.  Click the link, and an SSH hostname and port will appear.
+Then, open up a terminal or SSH client, and SSH into the device using the given hostname and port.
+
+You're in!
+
+
